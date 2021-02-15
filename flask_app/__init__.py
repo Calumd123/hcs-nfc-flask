@@ -1,9 +1,9 @@
 from flask import Flask 
 from flask_cors import CORS
-from .routes.app import main
+from .routes.app import app
 
 def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(main)
-    CORS(app)
-    return app 
+    webapp = Flask(__name__)
+    webapp.register_blueprint(app)
+    CORS(webapp)
+    return webapp 
