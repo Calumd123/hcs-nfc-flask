@@ -8,11 +8,11 @@ from flask import Flask, Blueprint
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import SyncGrant
 
-app = Blueprint('app', __name__)
+main = Blueprint('main', __name__)
 load_dotenv()
 
 
-@app.route('/token', methods=['POST'])
+@main.route('/token', methods=['POST'])
 def token():
     token = AccessToken(os.environ['TWILIO_ACCOUNT_SID'],
                         os.environ['TWILIO_API_KEY_SID'],
@@ -21,7 +21,7 @@ def token():
                         identity=uuid.uuid4().hex)
     return {'token': token.to_jwt().decode()}
 
-@app.route('/nfc', methods=['POST'])
+@main.route('/nfc', methods=['POST'])
 def pushNFC():
 
     json_data = request.get_json(force=True)
