@@ -5,13 +5,11 @@ from twilio.rest import Client
 import uuid
 from dotenv import load_dotenv
 from flask import Flask
-from flask_cors import CORS
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import SyncGrant
 
+app = Blueprint('app', __name__)
 load_dotenv()
-app = Flask(__name__)
-CORS(app)
 
 
 @app.route('/token', methods=['POST'])
@@ -28,7 +26,6 @@ def pushNFC():
 
     json_data = request.get_json(force=True)
     text = json_data['text']
-    load_dotenv()
     client = Client()
 
     sync_service = client.sync.services(os.environ.get('TWILIO_SYNC_SERVICE_SID'))
