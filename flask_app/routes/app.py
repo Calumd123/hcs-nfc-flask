@@ -24,11 +24,11 @@ def token():
 @app.route('/nfc', methods=['POST'])
 def pushNFC():
 
-    json_data = request.get_json(force=True)
-    text = json_data['text']
+    #json_data = request.get_json(force=True)
+    #text = json_data['text']
     client = Client()
 
     sync_service = client.sync.services(os.environ.get('TWILIO_SYNC_SERVICE_SID'))
     todo_list = sync_service.sync_lists('todoList')
-    todo_list.sync_list_items.create({'todo': text})
-    return {}
+    todo_list.sync_list_items.create({'todo': "success"})
+    return {"text":"success"}
