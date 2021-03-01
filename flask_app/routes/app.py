@@ -14,7 +14,6 @@ load_dotenv()
 
 @app.route('/token', methods=['POST'])
 def token():
-    print("API Key=" + os.environ['TWILIO_API_KEY_SID'])
     token = AccessToken(os.environ['TWILIO_ACCOUNT_SID'],
                         os.environ['TWILIO_API_KEY_SID'],
                         os.environ['TWILIO_API_KEY_SECRET'],
